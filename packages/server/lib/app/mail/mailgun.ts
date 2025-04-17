@@ -64,14 +64,32 @@ export class MailgunMailer extends Mailer {
   private transporter: nodemailer.Transporter;
   constructor() {
     super();
-    // 使用 Gmail SMTP 服务器配置
-    this.transporter = nodemailer.createTransport({
-      service: "gmail", // 使用 Gmail 的 SMTP 服务
-      auth: {
-        user: Env.getString("GMAIL_USER"), // 从环境变量中读取 Gmail 地址
-        pass: Env.getString("GMAIL_PASS"), // 从环境变量中读取应用专用密码
-      },
-    });
+    // 根据环境变量选择邮件服务
+    const mailService = Env.getString("MAIL_SERVICE", "gmail");
+    
+    if (mailService === "qq") {
+      // QQ邮箱配置
+      this.transporter = nodemailer.createTransport({
+        host: "smtp.qq.com",
+        port: 465,
+        secure: true, // 使用SSL
+        auth: {
+          user: Env.getString("QQ_MAIL_USER"), // QQ邮箱地址
+          pass: Env.getString("QQ_MAIL_PASS"), // QQ邮箱授权码
+        },
+      });
+    } else  {
+       // 使用 Gmail SMTP 服务器配置
+       this.transporter = nodemailer.createTransport({
+        service: "gmail", // 使用 Gmail 的 SMTP 服务
+        auth: {
+          user: Env.getString("GMAIL_USER"), // 从环境变量中读取 Gmail 地址
+          pass: Env.getString("GMAIL_PASS"), // 从环境变量中读取应用专用密码
+        },
+      });
+    }
+
+ 
   }
 
   async sendMail({

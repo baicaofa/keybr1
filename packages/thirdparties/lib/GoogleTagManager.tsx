@@ -12,12 +12,12 @@ export const GoogleTagManager = ({
     `window.dataLayer=window.dataLayer||[];` +
     `function gtag(){dataLayer.push(arguments)};` +
     `gtag("js",new Date());` +
-    `gtag("config","${id}");`;
+    `gtag("config","G-BJ9JKJYYRY");`;
   return (
     <>
       <script dangerouslySetInnerHTML={{ __html: html }} />
       <script
-        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
+        src="https://www.googletagmanager.com/gtag/js?id=G-BJ9JKJYYRY"
         defer={true}
       />
     </>

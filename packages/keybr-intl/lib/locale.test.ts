@@ -7,8 +7,8 @@ test("select locale", () => {
     (...found: string[]) =>
     (...locales: string[]) =>
       locales.find((locale) => found.includes(locale)) ?? null;
-  equal(selectLocale(filter()), "en");
-  equal(selectLocale(filter("xx")), "en");
+  equal(selectLocale(filter()), "zh-hans");
+  equal(selectLocale(filter("xx")), "zh-hans");
   equal(selectLocale(filter("en")), "en");
   equal(selectLocale(filter("en-US")), "en");
   equal(selectLocale(filter("en-CA")), "en");
