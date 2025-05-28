@@ -88,7 +88,7 @@ test("render for a bot", () => {
     <ManifestContext.Provider value={Manifest.fake}>
       <PageDataContext.Provider
         value={{
-          base: "https://www.keybr.com/",
+          base: "https://typing.keybr.com.cn/",
           locale: "en",
           user: null,
           publicUser: {
